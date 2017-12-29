@@ -1,0 +1,12 @@
+﻿PET_find:正子斷層造影發現
+Size:(　公分)
+C_spine:頸椎第節
+SCM:胸鎖乳突肌
+Bil_thyroid:甲狀腺左右葉
+RUL:右上肺葉
+RML:右中肺葉
+RLL:右下肺葉
+LUL:左上肺葉
+LLL:左下肺葉
+T_Spine:胸椎第節
+L_Spine:腰椎第節

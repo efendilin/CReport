@@ -1,0 +1,17 @@
+﻿ENT_OPD_FU:，建議耳鼻喉科門診追蹤檢查。
+Dentist_OPD_FU:，建議牙科門診追蹤檢查。
+Endocrine_FU:，建議內分泌科門診追蹤檢查。
+Chest_OPD_FU:，建議胸腔科門診追蹤檢查。
+Breast_FU:，建議乳房外科門診進一步檢查。
+BreastSono_FU:，建議每年定期安排乳房超音波或乳房攝影檢查。
+GI_OPD_FU:，建議肝膽腸胃科門診追蹤檢查。
+GYN_OPD_FU:，建議婦產科門診追蹤檢查。
+Urology_OPD_FU:，建議泌尿科門診追蹤檢查。
+Hemo_OPD_FU:，建議血液科門診追蹤檢查。
+Derm_OPD_FU:，建議皮膚科門診追蹤檢查。
+Clinical_FU:，建議臨床比對及進一步檢查。
+FU_One_year:，建議一年後追蹤檢查。
+LDCT_FU:，建議一年後低劑量肺部電腦斷層追蹤。
+Correlate_PES:，建議比對胃鏡檢查。
+Correlate_Colon:，建議比對大腸鏡檢查。
+RO_DM_FU:鑑於高血糖的情形( mg/dL)疑似糖尿病 ，建議內分泌科門診追蹤檢查。

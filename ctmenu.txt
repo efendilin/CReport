@@ -1,0 +1,16 @@
+﻿CT_Find:電腦斷層發現
+Symmetrical:外型對稱無異常
+Max_Sinusitis:上頜竇鼻竇炎
+COM:慢性中耳炎
+Soft_Tissue_Nd:軟組織節結
+Fibrosis:纖維變化
+Nodule:結節(公分)
+Tiny_Nodule:小結節(公分)
+Ground_glass_opacity:毛玻璃樣病灶
+Emphysema:肺氣腫性變化，建議胸腔科門診追蹤。
+Coronary_artery_cal:冠狀動脈鈣化
+Ovary_Cyst:卵巢囊腫(公分)
+Myoma:子宮較大且局部突出，應為子宮肌瘤，建議婦產科門診追蹤。
+Prostate_enlarged:攝護腺肥大，建議泌尿科門診追蹤。
+Spondylolysis:椎弓解離
+Spondylolisthesis:腰椎滑脫

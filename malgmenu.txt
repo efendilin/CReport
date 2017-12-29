@@ -1,0 +1,11 @@
+﻿Tumor_Intense_FDG:腫瘤葡萄糖攝取強烈增加
+Focal_Intense_FDG:局部病灶葡萄糖攝取強烈增加
+SoftTissue_IntFDG:軟組織病灶葡萄糖攝取強烈增加
+Hypermetabolic:高代謝性病灶
+Possible_Malignant:疑為惡性病灶
+No_Change:與前次檢查相較無變化
+Become_less_Intense:於本次檢查發現葡萄糖攝取減少
+Become_more_Intense:於本次檢查發現葡萄糖攝取增加
+FocalIntFDG_Met:局部病灶葡萄糖攝取強烈增加，可能為惡性轉移。
+NodularIntFDG_Met:淋巴結腫大且葡萄糖攝取強烈增加，可能為惡性淋巴結轉移。
+NoMet_NeedFU:未偵測到代表復發及轉移的異常高代謝性病灶。鑑於癌病史，建議定期臨床追蹤檢查。
