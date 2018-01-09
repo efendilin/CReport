@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import subprocess
+#import subprocess
 import requests
 import re
+import time
+import win32clipboard
+import win32con
+
 from bs4 import BeautifulSoup
-from os import walk, path, stat, linesep
+from os import walk, path, stat, linesep, getcwd, system
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 from nmainUI import Ui_MainWindow
 from hotstr import Ui_Dialog
@@ -50,8 +54,13 @@ class MyHighlighter( QtGui.QSyntaxHighlighter ):
         warmword.setForeground(QtGui.QColor(255, 85, 0))
         warmword.setFontWeight(Qt.QFont.Bold)
 
+        malword = Qt.QTextCharFormat()
+        malword.setForeground(QtGui.QColor(255, 0, 0))
+        malword.setFontWeight(Qt.QFont.Bold)
+
         keywords = ["Diagnosis", "Brains:", "Whole Body:", "CONCLUSIONS", "Impression：", "Comment :"]
         warmwords = ['Fatty liver', 'Polyp', 'Polyps', 'cyst', 'cysts', 'stone', 'stones', 'adenoma', 'polyp']
+        malwords = ['cancer', 'malignancy', 'malignant','carcinoma', 'adenocarcinoma', 'sacroma', 'lymphoma', 'metastastic']
 
         for word in keywords:
             pattern = Qt.QRegExp("\\b" + word)
@@ -60,6 +69,10 @@ class MyHighlighter( QtGui.QSyntaxHighlighter ):
         for word in warmwords:
             pattern = Qt.QRegExp("\\b" + word + "\\b")
             self.highlightingRules.append((pattern, warmword))
+
+        for word in malwords:
+            pattern = Qt.QRegExp("\\b" + word + "\\b")
+            self.highlightingRules.append((pattern, malword))
 
         self.highlightingRules.append((Qt.QRegExp("\\b^[0-9]{1,2}.\s\\b"), keyword))
         return
@@ -95,14 +108,17 @@ class MyTextEdit(QtWidgets.QTextEdit):
 
     def phraseFunc(self):
         submenu = QtWidgets.QMenu()
-        lnmenu = submenu.addMenu("生理性")
+        phymenu = submenu.addMenu("生理性")
+        infmenu = submenu.addMenu("發炎")
+        malgmenu = submenu.addMenu("惡性")
         mesmenu = submenu.addMenu("測量")
         echomenu = submenu.addMenu("超音波")
-        malgmenu = submenu.addMenu("惡性")
         ctmenu = submenu.addMenu("電腦斷層")
         fumenu = submenu.addMenu("追蹤")
-        for key in keydict['lnmenu']:
-             lnmenu.addAction(key, lambda term=keydict['lnmenu'][key]: self.insertPlainText(term))
+        for key in keydict['phymenu']:
+            phymenu.addAction(key, lambda term=keydict['phymenu'][key]: self.insertPlainText(term))
+        for key in keydict['infmenu']:
+            infmenu.addAction(key, lambda term=keydict['infmenu'][key]: self.insertPlainText(term))
         for key in keydict['mesmenu']:
             mesmenu.addAction(key, lambda term=keydict['mesmenu'][key]: self.insertPlainText(term))
         for key in keydict['echomenu']:
@@ -151,6 +167,20 @@ class MyWin(QtWidgets.QMainWindow):
 
         return
 
+    def GetClipboard(self):
+        win32clipboard.OpenClipboard()
+        temp = win32clipboard.GetClipboardData(win32con.CF_UNICODETEXT)
+        win32clipboard.CloseClipboard()
+        return temp
+
+    def SetClipboard(self, text):
+        win32clipboard.OpenClipboard()
+        win32clipboard.EmptyClipboard()
+        win32clipboard.SetClipboardData(win32con.CF_UNICODETEXT, text)
+        win32clipboard.CloseClipboard()
+        return
+
+
     def thef12fun(self):
         currentFile = ''
         mydia = MyDialog(myapp)
@@ -193,12 +223,14 @@ class MyWin(QtWidgets.QMainWindow):
         if '腹部超音波檢查 :' in temp:
             sonofind = self.sepdeler(temp.split('腹部超音波檢查 :')[1])
         ctext = comm + 'IamSep' + petfind + 'IamSep' + sonofind + 'IamSep' + r + 'IamSep' + v + 'IamSep' + currentFile
-
-        authotkey_process = subprocess.Popen(["sender.exe", "*"], shell=False,\
-                                                     stdin=subprocess.PIPE, stdout=subprocess.PIPE,\
-                                                     stderr=subprocess.PIPE, encoding='cp950')
-        authotkey_process.communicate(ctext.replace('\r',''))
-        authotkey_process.kill()
+        #ctext = ctext.replace('\r','')
+        self.SetClipboard(ctext)
+        system("sender.exe")
+        #authotkey_process = subprocess.Popen(["sender.exe", "*"], shell=False,\
+        #                                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,\
+        #                                             stderr=subprocess.PIPE, encoding='cp950')
+        #authotkey_process.communicate(ctext)
+        #authotkey_process.kill()
         return
 
     def colorFpicker(self):
@@ -519,8 +551,54 @@ class MyWin(QtWidgets.QMainWindow):
         return
 
     def testF(self):
-        print('press F12')
-        #self.ui.nmorep.append(creptemp[1])
+        if self.nmonums:
+            repForm = creptemp[1]
+            Text = self.nmonums['核醫']
+            Temp = []
+            for sent in Text.splitlines():
+                if sent:
+                    Temp.append(sent.strip())
+            repsentlist = []
+
+            Bend = 0
+            if 'FINDINGS :' in Text:
+                Rinit = Temp.index('FINDINGS :') + 1
+            else:
+                Rinit = 0
+            if 'Whole Body:' in Temp:
+                Binit = Temp.index('Whole Body:')
+            elif 'Whole Body: Normal physiologic' in Temp:
+                Binit = Temp.index('Whole Body: Normal physiologic')
+            else:
+                Binit = Rinit
+
+            if Rinit > Binit:
+                Brain = ' '.join(Temp[Rinit:Binit - 1]).replace('Brains:', '').strip()
+                repsentlist.append(Brain)
+
+            sentTemp = ''
+            for sent in Temp[Binit + 1:]:
+                if 'CONCLUSIONS :' in sent:
+                    sent = ''
+                elif 'Reported By' in sent:
+                    sent = ''
+                elif '核專醫字' in sent:
+                    sent = ''
+
+                if re.match('\d[.]\s', sent):
+                    if sentTemp:
+                        repsentlist.append(sentTemp)
+                        sentTemp = sent
+                    else:
+                        sentTemp = sent
+                else:
+                    sentTemp = sentTemp + ' ' + sent
+            repsentlist.append(sentTemp)
+        Text = linesep.join(repsentlist)
+        for key in eckeypair.keys():
+            Text = Text.replace(key, eckeypair[key])
+
+        clipboard.setText(Text)
         return
 
 
@@ -564,7 +642,7 @@ if __name__ == '__main__':
 
     repTabText = ['NM開單 {}','NM {}','病理 {}','放射 {}', '內視鏡 {}' ,'Others {}']
 
-    keycatlist = ['lnmenu','mesmenu','echomenu','malgmenu','ctmenu','fumenu']
+    keycatlist = ['phymenu','infmenu','mesmenu','echomenu','malgmenu','ctmenu','fumenu']
     keydict = {}
 
     for list in keycatlist:
@@ -576,8 +654,9 @@ if __name__ == '__main__':
         while True:
             t = f.readline()
             if t == '': break
-            keypair = t.strip().split(':')
-            temp[keypair[0]] = keypair[1]
+            if ':' in t:
+                keypair = t.strip().split(':')
+                temp[keypair[0]] = keypair[1]
         keydict[list] = temp
         f.close()
 
@@ -596,8 +675,9 @@ if __name__ == '__main__':
     while True:
         t = f.readline()
         if t == '': break
-        keypair = t.strip().split(':')
-        makerTemp[keypair[0]] = keypair[1]
+        if ':' in t:
+            keypair = t.strip().split(':')
+            makerTemp[keypair[0]] = keypair[1]
 
     hotkeystr = {}
     try:
@@ -607,12 +687,24 @@ if __name__ == '__main__':
     while True:
         t = f.readline()
         if t == '': break
-        keypair = t.strip().split('|')
-        hotkeystr[keypair[0]] = keypair[1]
+        if '|' in t:
+            keypair = t.strip().split('|')
+            hotkeystr[keypair[0]] = keypair[1]
 
-
+    eckeypair = {}
+    try:
+        f = open('eckeypair.txt', 'r', encoding='utf-8-sig')
+    except UnicodeDecodeError:
+        f = open('eckeypair.txt', 'r', encoding='cp950')
+    while True:
+        t = f.readline()
+        if t == '': break
+        if ':' in t:
+            keypair = t.strip().split(':')
+            eckeypair[keypair[0]] = keypair[1]
 
     app = QtWidgets.QApplication(sys.argv)
+    clipboard = QtWidgets.QApplication.clipboard()
     myapp = MyWin()
     myapp.show()
     sys.exit(app.exec_())

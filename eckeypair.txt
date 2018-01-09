@@ -1,0 +1,31 @@
+FDG-PET:正子電腦斷層
+FDG:葡萄糖
+PET:正子電腦斷層
+RUL:右上肺葉
+RML:右中肺葉
+RLL:右下肺葉
+LUL:左上肺葉
+LLL:左下肺葉
+CT:電腦斷層
+OPD:門診
+post-R/T change:放射治療後變化
+study:檢查
+gastro-esophageal:胃食道
+EC:胃食道
+correlation:比對
+management:處理
+follow up:追蹤
+contrast:顯影劑
+MRI:核磁共振
+shows:發現
+show:發現
+cysts:水泡
+cyst:水泡
+endocrinologist:內分泌科醫師
+LNs:淋巴結
+LN:淋巴結
+sonography:超音波
+ENT:耳鼻喉科
+GYN:婦產科
+cm:公分
+GERD:逆流性食道炎
