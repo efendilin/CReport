@@ -1,0 +1,11 @@
+﻿liver:main:肝,post,葉,肝臟：;cyst:水泡;cysts:水泡;hemangioma:血管瘤;incomplete:不可見;calcification:鈣化;parenchymal disease:慢性實質肝臟疾病;lesion:局部病灶;ectomy:已切除
+hepatic:main:肝,post,葉,肝臟：;cyst:水泡;cysts:水泡;hemangioma:血管瘤;incomplete:不可見;calcification:鈣化;parenchymal disease:慢性實質肝臟疾病;lesion:局部病灶;ectomy:已切除
+gallbladder:main:膽囊,non,,膽囊：;polyp:息肉;polyps:息肉;adenomyomatosis:膽囊腺肌增生症;incomplete:不可見;ectomy:已切除;stone:結石;lesion:局部病灶
+GB:main:膽囊,non,,膽囊：;polyp:息肉;polyps:息肉;adenomyomatosis:膽囊腺肌增生症;incomplete:不可見;ectomy:已切除;stone:結石;lesion:局部病灶
+pancreas:main:胰臟,non,,胰臟：;head:頭部;body:體部;tail:尾部;incomplete:不可見;ectomy:已切除;calcification:鈣化;lesion:局部病灶
+spleen:main:脾臟,non,,脾臟：;splenomegaly:腫大;cyst:水泡;cysts:水泡;accessory:副脾;incomplete:不可見;ectomy:已切除;calcification:鈣化;lesion:局部病灶
+kidney:main:腎,ant,,腎臟：;cyst:水泡;stone:結石;angiomyolipoma:血管平滑肌脂肪瘤;incomplete:不可見;calcification:鈣化;lesion:局部病灶;ectomy:已切除
+renal:main:腎,ant,,腎臟：;cyst:水泡;stone:結石;angiomyolipoma:血管平滑肌脂肪瘤;incomplete:不可見;calcification:鈣化
+others:main:,non,,其他：;cyst:水泡;stone:結石;tumor:腫瘤;lesion:病灶;hyperechoic:高回音;hypoechoic:低回音;ectomy:已切除;ascite:腹水
+prefix:mild:輕度;moderate:中度;severe:重度;r/o:疑似;suspect:疑似
+after:tumor:腫瘤;lesion:病灶;hyperechoic:高回音;hypoechoic:低回音;ectomy:已切除

@@ -14,6 +14,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 from nmainUI import Ui_MainWindow
 from hotstr import Ui_Dialog
 
+class Worker(QtCore.QThread):
+    statue = QtCore.pyqtSignal(str)
+    #date = QtCore.pyqtSignal()
+
+    def __init__(self, parent=None):
+        super(self.__class__, self).__init__(parent)
+        self.rqs_connect = RepSearch.MyRQS_Searcher()
+        self.replist = []
+        self.allrep = []
+
+        return
+
 class MyDialog(QtWidgets.QDialog):
     def __init__(self, parent):
         QtWidgets.QDialog.__init__(self, parent)
@@ -522,23 +534,10 @@ class MyWin(QtWidgets.QMainWindow):
                 pid = self.ui.tabCReport.currentWidget().objectName()
             else:
                 pid = ""
-
         if pid:
             self.cleanEtab()
             s =requests.Session()
-            try:
-                proxy = {}
-                self.statusBar().showMessage('trying without proxy')
-                r = s.post(url, headers=headers, proxies=proxy, timeout=3.1)
-            except:
-                proxy = {"http": "http://{}".format(default_proxy), "https": "https://{}".format(default_proxy)}
-                self.statusBar().showMessage('trying with proxy')
-                try:
-                    r = s.post(url, headers=headers, proxies=proxy, timeout=3.1)
-                except:
-                    self.statusBar().showMessage('connect fault')
-                    return
-
+            r = s.post(url, headers=headers)
             soup = BeautifulSoup(r.text, 'lxml')
             for i in range(4):
                 payloadi[soup.find_all('input')[i]['name']] = soup.find_all('input')[i]['value']
@@ -547,7 +546,7 @@ class MyWin(QtWidgets.QMainWindow):
             payloadi['dpDate'] = dpDate
             payloadi['dpKind'] = dpKind
             payloadi['btnQuery'] = btnQuery
-            r = s.post(url, headers=headers, data=payloadi, proxies=proxy)
+            r = s.post(url, headers=headers, data=payloadi)
             soup = BeautifulSoup(r.text, 'lxml')
             payloadi[soup.find_all('input')[2]['name']] = soup.find_all('input')[2]['value']
             del payloadi['btnQuery']
@@ -569,7 +568,7 @@ class MyWin(QtWidgets.QMainWindow):
                     replink = []
                     if page:
                         payloadi['__EVENTTARGET'] = page
-                        r = s.post(url, headers=headers, data=payloadi, proxies=proxy)
+                        r = s.post(url, headers=headers, data=payloadi)
                         soup = BeautifulSoup(r.text, 'lxml')
                         payloadi[soup.find_all('input')[2]['name']] = soup.find_all('input')[2]['value']
                 # report link
@@ -580,7 +579,7 @@ class MyWin(QtWidgets.QMainWindow):
                     if replink:
                         for link in replink:
                             payloadi['__EVENTTARGET'] = link
-                            r = s.post(url, headers=headers, data=payloadi, proxies=proxy)
+                            r = s.post(url, headers=headers, data=payloadi)
                             soup = BeautifulSoup(r.text, 'lxml')
                             payloadi[soup.find_all('input')[2]['name']] = soup.find_all('input')[2]['value']
                             #get patient name
@@ -623,7 +622,7 @@ class MyWin(QtWidgets.QMainWindow):
                                     if tpage:
                                         starin = 1
                                         payloadi['__EVENTTARGET'] = tpage
-                                        r = s.post(url, headers=headers, data=payloadi, proxies=proxy)
+                                        r = s.post(url, headers=headers, data=payloadi)
                                         soup = BeautifulSoup(r.text, 'lxml')
                                         payloadi[soup.find_all('input')[2]['name']] = soup.find_all('input')[2]['value']
                                     tnum = (len(soup.find_all('table')[4].find_all('td')) - 1)//8
@@ -758,7 +757,7 @@ if __name__ == '__main__':
     dpDate = '一月內'
     dpKind = '所有檢查單'
     btnQuery= '查  詢'
-    ourVS = ['陳遠光','沈業有','葉加祿','陳世緯','馮柏綜']
+    ourVS = ['陳遠光','沈業有','葉加祿','陳世緯']
     ourR = ['陳世緯','林聖哲','蘇奕鴒','周慧姍']
 
     reptemp = '''
@@ -775,10 +774,6 @@ if __name__ == '__main__':
 
     keycatlist = ['phymenu','infmenu','mesmenu','echomenu','malgmenu','ctmenu','fumenu']
     keydict = {}
-
-    default_proxy = '10.1.12.163:8888'
-    proxy = {}
-    #proxy = {"http": "http://{}".format(default_proxy), "https": "https://{}".format(default_proxy)}
 
     for list in keycatlist:
         try:

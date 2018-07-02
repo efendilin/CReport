@@ -1,31 +1,146 @@
-FDG-PET:正子電腦斷層
-FDG:葡萄糖
-PET:正子電腦斷層
-RUL:右上肺葉
-RML:右中肺葉
-RLL:右下肺葉
-LUL:左上肺葉
-LLL:左下肺葉
-CT:電腦斷層
-OPD:門診
+﻿fdg-pet:正子電腦斷層
+foci of:局部
+nodal:結節狀
+may due to:可能為
+hypermetabolic:高代謝性
+malignant tumoral uptake:惡性病灶
+mild increased FDG uptake:葡萄糖攝取輕微增加
+mildly increased FDG uptake:葡萄糖攝取輕微增加
+faint increased FDG uptake:葡萄糖攝取輕微增加
+faintly increased FDG uptake:葡萄糖攝取輕微增加
+intense FDG uptake:葡萄糖攝取強烈增加
+focal increased FDG uptake:局部葡萄糖攝取增加
+increased FDG uptake:葡萄糖攝取增加
+mild FDG uptake:葡萄糖輕微攝取
+mild focal FDG uptake:局部葡萄糖輕微攝取
+compression fracture:壓迫性
+physiologic bowel uptake:腸道生理性變化
+is due to:應為
+is likely:應為
+pre-existing:原先的
+up to:最大
+LAP:淋巴結病變
+ground-glass-opacity:毛玻璃樣
+tubo-ovarian:卵巢輸卵管
+retromolar:臼齒後
+distal esophagus near EC junction:食道遠端胃食道交界處附近
+uterine:子宮
+ovarian cyst:卵巢囊腫
+sacrum:薦椎
+fdg:葡萄糖
+pet:正子電腦斷層
+rul:右上肺葉
+rml:右中肺葉
+rll:右下肺葉
+lul:左上肺葉
+lll:左下肺葉
+ldct:低劑量胸部電腦斷層
+mucus:黏液
+ct:電腦斷層
+chest OPD:胸腔科門診
+may:可能
+opd:門診
+djd:關節退化性變化
 post-R/T change:放射治療後變化
 study:檢查
 gastro-esophageal:胃食道
-EC:胃食道
+ec:胃食道
+scoliosis:脊柱側彎
+granuloma:肉芽組織
 correlation:比對
 management:處理
 follow up:追蹤
 contrast:顯影劑
-MRI:核磁共振
+mri:核磁共振
 shows:發現
 show:發現
+showed:發現
+cystic:囊狀
 cysts:水泡
 cyst:水泡
+adenoma:腺瘤
+sinusitis:鼻竇炎
 endocrinologist:內分泌科醫師
-LNs:淋巴結
-LN:淋巴結
+lns:淋巴結
+ln:淋巴結
 sonography:超音波
-ENT:耳鼻喉科
-GYN:婦產科
+ent:耳鼻喉科
+gyn:婦產科
 cm:公分
-GERD:逆流性食道炎
+gerd:逆流性食道炎
+lap:淋巴結病變
+dentopathy:牙科病症
+perifissural:裂隙旁
+favoring:可能為
+inflammation:發炎
+inflammatory:發炎
+resolved:緩解
+degenerative change:退化性變化
+change:變化
+ascites:腹水
+mediastinal:縱膈腔
+mediastinum:縱膈腔
+suspicious:疑似
+gi:肝膽胃腸科
+mediastinal:縱膈腔
+hilar:肺門
+hilum:肺門
+axillary:腋下
+reflux esophagitis:逆流性食道炎
+esophagitis:食道炎
+esophagus:食道
+focally:局部
+focal:局部
+lymphadenitis:淋巴腺炎
+heterogeneously:不均勻
+heterogeneous:不均勻
+minimal:少許
+apical lung:肺尖
+lesion:病灶
+r/o:疑似
+c/w:應為
+cm:公分
+fibroinfiltrative:纖維浸潤
+patch:斑塊
+faint:輕微
+gb:膽囊
+URI:上呼吸道感染
+COM:慢性中耳炎
+likely due to:應為
+possibly due to:疑為
+diffusely:廣泛性
+diffus:廣泛性
+close:密切
+facet:小面
+mildly:輕微
+mild:輕微
+faint:輕微
+faintly:輕微
+degeneration:退化
+degenerative:退化
+change:變化
+tendinitis:肌腱炎
+post-traumatic:受傷後
+nodal metastases:惡性淋巴轉移
+nodal metastasis:惡性淋巴轉移
+size:大小
+image:影像
+dm:糖尿病
+tb:結合病
+correlation:比對
+subpleural:肋膜下
+peribronchial:支氣管旁
+pleural:肋膜
+hemorrhoid:痔瘡
+axial:中軸
+appendicular:附肢
+perifissure:裂隙旁
+spondylolysis:椎弓解離
+follow up:追蹤
+para-tracheal:氣管旁
+para-aortic:主動脈旁
+para-vertebrae:脊椎旁
+spondylolisthesis:腰椎滑脫
+DDx:鑑別診斷
+suggesting:應為
+survey:檢查

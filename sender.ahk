@@ -12,10 +12,10 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-sleep, 50
-stdout := FileOpen("*", "r")  
-Text := stdout.read()
-;Text := Clipboard
+;sleep, 50
+;stdout := FileOpen("*", "r")  
+;Text := stdout.read()
+Text := Clipboard
 Text_array := StrSplit(Text, "IamSep")
 
 IfWinNotExist, UniReport

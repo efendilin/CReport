@@ -20,3 +20,5 @@ Prostate_central:攝護腺中央局部葡萄糖攝取增加，應為尿液堆積
 Anus_Hemorrhoid:肛門區局部葡萄糖攝取增加，可能為痔瘡所致
 BoneMarrow_anemia:全身骨髓廣泛性葡萄糖攝取輕微增加，應為貧血相關的骨髓增生
 Brown_Fat_Phy:脂肪組織對稱性葡萄糖攝取輕微增加，應為棕色脂肪的生理性變化
+Benign_FollowUp:應為良性，建議追蹤檢查。
+Benign:應為良性。
